@@ -14,3 +14,10 @@ class Ubicacion(Base):
     colonia=Column(String)
     municipio=Column(String)
     estado=Column(String)
+    
+    def __init__(self,numero,calle,colonia,municipio,estado):
+      self.numero=numero
+      self.calle=calle
+      self.colonia=colonia
+      self.municipio=municipio
+      self.estado=estado

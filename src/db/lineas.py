@@ -4,7 +4,7 @@ Created on Apr 23, 2013
 @author: pit
 '''
 from basededatos import *
-from sqlalchemy.schema import Column
+from sqlalchemy.schema import Column, ForeignKey
 from productos import *
 from sqlalchemy.orm import backref
 from sqlalchemy.types import Float
@@ -16,5 +16,13 @@ class Lineas(Base):
     cantidad=Column(Integer)
     precio=Column(Float)
     total=Column(Float)
-    producto_id=relationship("Producto", backref=backref("producto"))
+    producto_id=Column(Integer, ForeignKey("productos.producto_id"))
+    producto=relationship("Producto", backref=backref("lineas"))
+    
+    def __init__(self,linea,cantidad,precio,total):
+      self.linea=linea
+      self.cantidad=cantidad
+      self.precio=precio
+      self.total=total
+      
     
