@@ -18,3 +18,5 @@ class Categorias(Base):
     def __init__(self,nombre):
       self.nombre=nombre
       
+    def altas(self,nombre):
+      categoria=[Categorias(nombre)]
