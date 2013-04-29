@@ -16,8 +16,8 @@ class Lineas(Base):
     cantidad=Column(Integer)
     precio=Column(Float)
     total=Column(Float)
-    producto_id=Column(Integer, ForeignKey("productos.producto_id"))
-    producto=relationship("Producto", backref=backref("lineas"))
+    productos_id=Column(Integer, ForeignKey("productos.producto_id"))
+    producto=relationship("Productos", backref=backref("lineas"))
     
     def __init__(self,linea,cantidad,precio,total):
       self.linea=linea
