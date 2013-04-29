@@ -5,7 +5,7 @@ Created on Apr 23, 2013
 '''
 from basededatos import *
 from sqlalchemy.schema import Column
-
+from categorias import *
 class Ubicacion(Base):
     __tablename__ = "ubicacion"
     ubicacion_id= Column(Integer, primary_key=True)
@@ -21,3 +21,13 @@ class Ubicacion(Base):
       self.colonia=colonia
       self.municipio=municipio
       self.estado=estado
+      
+    def altas(self,nombre_categoria,numero,calle,colonia,municipio,estado):
+      new_ubicacion=Ubicacion(numero,calle,colonia,municipio,estado)
+      categoria=Categorias.altas(nombre_categoria)
+      new_ubicacion.categorias.extend(categoria)
+      session.add(new_ubicacion)
+      session.commit()
+      
+new_ubicacion=Ubicacion
+new_ubicacion

@@ -20,3 +20,4 @@ class Categorias(Base):
       
     def altas(self,nombre):
       categoria=[Categorias(nombre)]
+      return categoria
