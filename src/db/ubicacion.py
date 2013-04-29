@@ -15,7 +15,7 @@ class Ubicacion(Base):
     municipio=Column(String)
     estado=Column(String)
     
-    def __init__(self,numero,calle,colonia,municipio,estado):
+    def __init__(self,numero=None,calle=None,colonia=None,municipio=None,estado=None):
       self.numero=numero
       self.calle=calle
       self.colonia=colonia
@@ -24,10 +24,8 @@ class Ubicacion(Base):
       
     def altas(self,nombre_categoria,numero,calle,colonia,municipio,estado):
       new_ubicacion=Ubicacion(numero,calle,colonia,municipio,estado)
-      categoria=Categorias.altas(nombre_categoria)
+      categoria=Categoria.altas(nombre_categoria)
       new_ubicacion.categorias.extend(categoria)
       session.add(new_ubicacion)
       session.commit()
       
-new_ubicacion=Ubicacion
-new_ubicacion
