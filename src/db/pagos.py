@@ -17,6 +17,4 @@ class Pagos(Base):
     cliente_id=Column(Integer,ForeignKey("cliente.cliente_id"))
     cliente=relationship("Cliente", backref=backref("pagos"))
     
-    def __init__(self,fecha,cantidad):
-      self.fecha=fecha
-      self.cantidad=cantidad
+    

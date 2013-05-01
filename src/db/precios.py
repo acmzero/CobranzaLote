@@ -17,7 +17,5 @@ class Precios(Base):
     producto_id=Column(Integer,ForeignKey("productos.producto_id"))
     producto=relationship("Productos", backref=backref("precios"))
     
-    def __init__(self,fecha,precio):
-      self.fecha=fecha
-      self.precio=precio
+    
       

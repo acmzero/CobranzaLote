@@ -17,8 +17,6 @@ class Venta(Base):
     cliente_id=Column(Integer, ForeignKey("cliente.cliente_id"))
     cliente=relationship("Cliente", backref=backref("venta"))
     
-    def __init__(self,fecha,folio):
-      self.fecha=fecha
-      self.folio=folio
+    
       
     

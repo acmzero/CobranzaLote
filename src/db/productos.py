@@ -13,7 +13,4 @@ class Productos(Base):
     descripcion=Column(String)
     sn=Column(String)
     
-    def __init__(self,nombre,descripcion,sn):
-      self.nombre=nombre
-      self.descripcion=descripcion
-      self.sn=sn
+    

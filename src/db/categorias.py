@@ -15,8 +15,7 @@ class Categoria(Base):
     ubicacion_id=Column(Integer, ForeignKey("ubicacion.ubicacion_id"))
     ubicacion=relationship("Ubicacion", backref=backref("categoria"))
     
-    def __init__(self,nombre=None):
-      self.nombre=nombre
+    
       
     def altas(self,nombre):
       categoria=[Categoria(nombre)]

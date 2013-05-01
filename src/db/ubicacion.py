@@ -15,12 +15,7 @@ class Ubicacion(Base):
     municipio=Column(String)
     estado=Column(String)
     
-    def __init__(self,numero=None,calle=None,colonia=None,municipio=None,estado=None):
-      self.numero=numero
-      self.calle=calle
-      self.colonia=colonia
-      self.municipio=municipio
-      self.estado=estado
+    
       
     def altas(self,nombre_categoria,numero,calle,colonia,municipio,estado):
       new_ubicacion=Ubicacion(numero,calle,colonia,municipio,estado)

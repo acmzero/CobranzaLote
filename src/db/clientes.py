@@ -16,9 +16,5 @@ class Cliente(Base):
   categoria_id=Column(Integer, ForeignKey("categoria.categoria_id"))
   categoria=relationship("Categoria", backref=backref("cliente"))
     
-  def __init__(self,nombre=None,nombre_completo=None,apellidos=None):
-    self.nombre=nombre
-    self.nombre_completo=nombre_completo
-    self.apellidos=apellidos
-    
+  
     
