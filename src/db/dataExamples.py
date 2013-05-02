@@ -33,7 +33,7 @@ categoriaA=Categoria("ITSSP")
 print dir(clienteA)
 clienteA.categoria=categoriaA
 #clienteB.cliente.extends(categoriaA)
-categoriaA.cliente.extend([clienteB])
+categoriaA.cliente=[clienteB]
 
 session.add_all(clientes)
 session.add(categoriaA)
