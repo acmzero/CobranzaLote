@@ -38,7 +38,7 @@ class Cliente(Entity):
   pagos=OneToMany("Pagos")
   ventas=OneToMany("Venta")
   def __unicode__(self):
-    return self.nombre
+    return self.nombre_completo
   
   class Admin( EntityAdmin ):
     form_size = (400,200)
@@ -54,7 +54,7 @@ class Lineas(Entity):
   producto=ManyToOne("Productos")
   venta=ManyToOne("Venta")
   def __unicode__(self):
-    return self.cantidad
+    return str(self.cantidad)
   
   class Admin( EntityAdmin ):
     #form_size = (400,200)
@@ -69,7 +69,7 @@ class Pagos(Entity):
   cliente=ManyToOne("Cliente")
   
   def __unicode__(self):
-    return self.cantidad or "No Definido"
+    return str(self.cantidad) or "No Definido"
   
   class Admin( EntityAdmin ):
     #form_size = (400,200)
@@ -105,13 +105,13 @@ class Productos(Entity):
   precios=OneToMany("Precios")
   
   def __unicode__(self):
-    return self.ciudad or "No Definido"
+    return self.nombre or "No Definido"
   
   class Admin( EntityAdmin ):
     #form_size = (400,200)
-    verbose_name="Poducto"
+    verbose_name="Producto"
     list_display = ["nombre"]
-    form_display = ["nombre","sn"]
+    form_display = ["nombre","sn","descripcion","precios"]
 
 
 class Precios(Entity):
@@ -136,7 +136,7 @@ class Venta(Entity):
   cliente=ManyToOne("Cliente")  
   lineas=OneToMany("Lineas")
   def __unicode__(self):
-    return self.fecha or "No Definido"
+    return str(self.fecha) or "No Definido"
   
   class Admin( EntityAdmin ):
     #form_size = (400,200)
