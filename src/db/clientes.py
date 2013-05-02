@@ -6,15 +6,8 @@ Created on Apr 23, 2013
 from basededatos import *
 from sqlalchemy.schema import Column
 from categorias import *
+from camelot.core.orm import Entity
+from camelot.admin.entity_admin import EntityAdmin
+from camelot.core.orm.relationships import ManyToOne
 
-class Cliente(Base):
-  __tablename__ = "cliente"
-  cliente_id= Column(Integer, primary_key=True)
-  nombre_completo= Column(String)
-  nombre=Column(String)
-  apellidos=Column(String)
-  categoria_id=Column(Integer, ForeignKey("categoria.categoria_id"))
-  categoria=relationship("Categoria", backref=backref("cliente"))
-    
-  
     
