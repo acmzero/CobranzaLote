@@ -37,13 +37,15 @@ class Cliente(Entity):
   categoria=ManyToOne("Categoria")
   pagos=OneToMany("Pagos")
   ventas=OneToMany("Venta")
+  referente=ManyToOne("Cliente")
+  comision=Column(Float)
   def __unicode__(self):
     return self.nombre_completo
   
   class Admin( EntityAdmin ):
     form_size = (400,200)
     list_display = ['nombre_completo',"categoria"]
-    form_display = ["nombre_completo", "pagos"]
+    form_display = ["nombre_completo","referente","comision", "pagos"]
     
 class Lineas(Entity):
   __tablename__ = "lineas"
@@ -143,3 +145,6 @@ class Venta(Entity):
     verbose_name="Venta"
     list_display = ["fecha","folio","cliente"]
     form_display = list_display  +["lineas"]
+    
+
+  
