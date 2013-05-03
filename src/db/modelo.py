@@ -4,7 +4,7 @@ Created on May 1, 2013
 @author: heli
 '''
 from basededatos import *
-from sqlalchemy import Column, Integer, String,Float
+from sqlalchemy import Column, Integer, String,Float,DateTime, event
 
 from ubicacion import *
 from sqlalchemy.orm import backref
@@ -12,6 +12,7 @@ from camelot.core.orm import Entity
 from camelot.admin.entity_admin import EntityAdmin
 from camelot.core.orm.relationships import OneToMany, ManyToOne, OneToOne
 from sqlalchemy.types import Date
+import datetime
 
 class Categoria(Entity):
   __tablename__ = "categoria"
@@ -24,7 +25,7 @@ class Categoria(Entity):
     return self.nombre
   
   class Admin( EntityAdmin ):
-    #form_size = (400,200)
+    form_size = (420,320)
     verbose_name="Oficina"
     list_display = ["nombre"]
     form_display = list_display + ["ubicacion",'clientes']
@@ -43,12 +44,12 @@ class Cliente(Entity):
     return self.nombre_completo
   
   class Admin( EntityAdmin ):
-    form_size = (400,200)
-    list_display = ['nombre_completo',"categoria"]
+    form_size = (420,320)
+    list_display = ['nombre_completo']
     form_display = ["nombre_completo","referente","comision", "pagos"]
     
-class Lineas(Entity):
-  __tablename__ = "lineas"
+class DetalleVenta(Entity):
+  __tablename__ = "detalle_ventas"
   linea=Column(Integer)
   cantidad=Column(Integer)
   precio=Column(Float)
@@ -103,7 +104,7 @@ class Productos(Entity):
   nombre= Column(String)
   descripcion=Column(String)
   sn=Column(String)
-  lineas=OneToMany("Lineas")
+  lineas=OneToMany("DetalleVenta")
   precios=OneToMany("Precios")
   
   def __unicode__(self):
@@ -133,10 +134,11 @@ class Precios(Entity):
 
 class Venta(Entity):
   __tablename__ = "venta"
-  fecha=Column(Date)
+  fecha=Column(DateTime, default=datetime.datetime.now())
   folio=Column(String)
   cliente=ManyToOne("Cliente")  
-  lineas=OneToMany("Lineas")
+  lineas=OneToMany("DetalleVenta")
+  escanear="Escanear Producto Aqui"
   def __unicode__(self):
     return str(self.fecha) or "No Definido"
   
@@ -144,7 +146,15 @@ class Venta(Entity):
     #form_size = (400,200)
     verbose_name="Venta"
     list_display = ["fecha","folio","cliente"]
-    form_display = list_display  +["lineas"]
+    form_display = list_display  +["escanear","lineas"]
+#    field_attributes = {"escanear": {"editable":True}}
     
-
+    
+def poner_precio(target, value, oldValue, initiator):
+  print "target: "+ str(target) + " Value: "+ str(value) + " initiator: "+ initiator
   
+
+def total_linea(target, value, initiator):
+  pass
+
+#event.listen(DetalleVenta.producto, "set", poner_precio) 
