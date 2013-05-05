@@ -18,10 +18,13 @@ class MyApplicationAdmin(ApplicationAdmin):
         return [ Section( _('Menu'),
                           self,
                           Icon('tango/22x22/apps/system-users.png'),
-                          items = [Categoria,Cliente,Venta,Productos] ),
+                          items = [Categoria,Venta,Productos] ),
 #                 Section( _('Configuration'),
 #                          self,
 #                          Icon('tango/22x22/categories/preferences-system.png'),
 #                          items = [Memento, Translation] )
                 ]
+    def get_main_menu(self):
+      pass
+#      return ApplicationAdmin.get_main_menu(self)
     
